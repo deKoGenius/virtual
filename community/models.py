@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 #이쪽에 모델추가
+#태민 테스트
 
 # class Input(models.Model): # 처음 입력 모델
 #     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
