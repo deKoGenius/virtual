@@ -15,7 +15,7 @@ class User(models.Model): # 유저 모델
         ('W', '여성(Woman)'),
     )
     gender = models.CharField(verbose_name='성별', max_length=1, choices=GENDERS, default = '')
-    tag = models.CharField(max_length=12, null=True)
+    tag = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
         return self.tag
 
