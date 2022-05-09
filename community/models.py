@@ -22,8 +22,8 @@ class User(models.Model): # 유저 모델
 class Input(models.Model): # 처음 입력 모델
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag, blank=True)
-    startperiod = models.DateTimeField(auto_now=False, default='2022-02-22')
-    endperiod = models.DateTimeField(auto_now=False, default='2022-02-22')
+    startperiod = models.DateTimeField(null=True)
+    endperiod = models.DateTimeField(null=True)
     area = models.CharField(max_length=20)
     def __str__(self):
         return self.tag
@@ -35,6 +35,7 @@ class Tour(models.Model): # 관광지 모델
     tourLongitude = models.FloatField(blank=True)
     tour_url = models.URLField('관광지 URL', max_length=400, blank=True,null=True,default='')
     image_file = models.ImageField('관광지 이미지', upload_to='tours', blank=True, null=True)
+    cnt = models.IntegerField(null=True)
 
 class Restaurant(models.Model): # 식당 모델
     name = models.CharField(max_length = 20)
