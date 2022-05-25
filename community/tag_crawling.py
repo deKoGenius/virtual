@@ -26,6 +26,7 @@ def get_tour_tag(name):
     soup = BeautifulSoup(html, 'html.parser')
     parse = soup.find_all('li')
     tag = list()
+    tag.append(name)
     for index in parse:
         tag_name = index.get_text()
         if "#" in tag_name:
@@ -44,15 +45,3 @@ def get_tour_tag(name):
             # if "바다" in tag_name:
             #     print(tag_name)
     return tag
-
-# driver.switch_to.frame(frame)
-# time.sleep(1)
-#
-# first_content= driver.find_element(By.XPATH, '/html/body/div[3]/div/div[2]/div[1]/ul/li/div[2]').click()
-# driver.switch_to.default_content()
-# frame = WebDriverWait(driver, timeout=5).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#entryIframe')))
-# driver.switch_to.frame(frame)
-# time.sleep(2)
-#
-# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-#

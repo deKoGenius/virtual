@@ -3,16 +3,23 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 import django
 django.setup()
-import pandas as pd
+import csv
 from community.models import Tour
 from community.tag_crawling import get_tour_tag
 
 # Create your tests here.
-
 all = Tour.objects.all()
-print(all[0].__str__())
-tourname = all[0].__str__()
-tag = get_tour_tag(tourname)
-print(tag)
-# for tourname in all:
-#     print(index)
+
+tagAll = list()
+
+for index in all:
+    tourName = index.__str__()
+    print(tourName)
+    tag = get_tour_tag(tourName)
+    tagAll.append(tag)
+
+print("done")
+
+with open("output.csv","w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(tagAll)
