@@ -1,20 +1,30 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
+    <link rel="stylesheet" herf="{% static 'css/style.css' %}">
 </head>
 <body>
-    <form action="" autocomplete="on">
-        기간 : <input type="date" name="day2" min="1977-01-01" max="2020-12-31"><br>
-        지역 : <input type="text" name="search"><br>
-        keyword : <select name="keyword">
-        <option value="default" selcted>선택안함
-        <option value="mountain">산
-        <option value="sea">바다
-
+    {% extends 'base.html' %}
+    {% block content %}
+    <form action="{% url 'community:question_create' %}" autocomplete="on" method="post" >
+        {% csrf_token %}
+   <!--    이름: <input type="text", id="name", name="name">   <br>
+       나이: <input type="text", id="age", name="age">   <br>
+       성별: <select name="gender">
+            <option value="">성별 선택</option>
+            <option value="남자">남성</option>
+            <option value="여성">여성</option>
     </select><br>
+        날짜: <input type="date"><br>
+        시간: <input type="time">
 
+
+   <br>-->
+        {{ form.as_p }}
+<button type="submit">확정 </button>
     </form>
 
 </body>

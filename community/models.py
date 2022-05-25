@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class Tag(models.Model): # 태그 모델
@@ -9,15 +8,15 @@ class Tag(models.Model): # 태그 모델
 class User(models.Model): # 유저 모델
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=10)
-    age = models.IntegerField(blank=True)
+    age = models.IntegerField(null=True)
     GENDERS = (
-        ('M', '남성(Man)'),
-        ('W', '여성(Woman)'),
+        ('M', '남성'),
+        ('W', '여성'),
     )
-    gender = models.CharField(verbose_name='성별', max_length=1, choices=GENDERS, default = '')
-    tag = models.ManyToManyField(Tag, blank=True)
-    def __str__(self):
-        return self.tag
+    gender = models.CharField(verbose_name='성별', max_length=2, choices=GENDERS, default = '')
+    date = models.DateField(null=True)
+    time = models.TimeField(null=True)
+
 
 class Input(models.Model): # 처음 입력 모델
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -45,7 +44,6 @@ class Restaurant(models.Model): # 식당 모델
     restaurant_url = models.URLField('식당 URL', max_length=400, blank=True,null=True,default='')
     image_file = models.ImageField('식당 이미지', upload_to='restaurants', blank=True, null=True)
 
-    pass
 
 class Stay(models.Model): # 숙소 모델
     name = models.CharField(max_length=20)
@@ -53,8 +51,6 @@ class Stay(models.Model): # 숙소 모델
     stayLognitude = models.FloatField(blank=True)
     restaurant_url = models.URLField('숙소 UR', max_length=400, blank=True,null=True, default='')
     image_file = models.ImageField('숙소 이미지', upload_to='stays', blank=True, null=True)
-
-    pass
 
 
 class Schedule(models.Model): # 일정리스트 모델
