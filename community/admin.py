@@ -3,5 +3,5 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Input)
+admin.site.register(Tag)
 admin.site.register(Tour)
