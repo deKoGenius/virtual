@@ -53,4 +53,27 @@ for i in range(0, rowsLen):
     columnList = []  # 다음 row의 값을 넣기 위해 비워준다. (매우 중요!!)
 
 df_result = pd.DataFrame(rowList)
+#df_result[0] = df_result[0].str.replace(pat=r'[^\w]', repl=r'', regex=True)
+print(df_result[0][2])
+#print(df_result.loc[1][0], len(df_result))
+for i in range(len(df_result)):
+    num = df_result[0][i].find('(')
+    if num > 0:
+        df_result[0][i] = df_result[0][i][:num]
+    num = df_result[0][i].find('&')
+    if num > 0:
+        df_result[0][i] = df_result[0][i][:num]
+    num = df_result[0][i].find(',')
+    if num > 0:
+        df_result[0][i] = df_result[0][i][:num]
+    num = df_result[0][i].find('/')
+    if num > 0:
+        df_result[0][i] = df_result[0][i][:num]
+
+    print(df_result[0][i])
+# print(df_result[0][19])
+# print(num)
+# df_result[0][19] = df_result[0][19][:num] # 인덱스 사이 값 반환
+# print(df_result[0][19])
+
 df_result.to_csv('json.csv' ,encoding='utf-8-sig')
