@@ -75,5 +75,5 @@ for i in range(len(df_result)):
 # print(num)
 # df_result[0][19] = df_result[0][19][:num] # 인덱스 사이 값 반환
 # print(df_result[0][19])
-
+#수정본
 df_result.to_csv('json.csv' ,encoding='utf-8-sig')
