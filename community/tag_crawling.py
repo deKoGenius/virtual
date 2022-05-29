@@ -1,9 +1,7 @@
-import pandas as pd
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 import django
 django.setup()
-from community.models import Tour
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -21,6 +19,7 @@ def get_tour_tag(name):
     element.send_keys(name)
     element.send_keys(Keys.RETURN)
     element = WebDriverWait(driver, timeout=5).until(EC.presence_of_element_located((By.CSS_SELECTOR, '#containernew > div > div > div > div > div.trvList.food_new > div > div > div.info > p > a'))).click()
+
     html = driver.page_source
 
     soup = BeautifulSoup(html, 'html.parser')
@@ -31,17 +30,24 @@ def get_tour_tag(name):
         tag_name = index.get_text()
         if "#" in tag_name:
             tag_name = tag_name[1:]
-            tag.append(tag_name)
-            # if "힐링" in tag_name:
-            #     print(tag_name)
-            # if "산책" in tag_name:
-            #     print(tag_name)
-            # if "테마" in tag_name:
-            #     print(tag_name)
-            # if "박물관" in tag_name:
-            #     print(tag_name)
-            # if "야경" in tag_name:
-            #     print(tag_name)
-            # if "바다" in tag_name:
-            #     print(tag_name)
+            if "힐링" in tag_name:
+                tag.append(tag_name)
+            if "산책" in tag_name:
+                tag.append(tag_name)
+            if "공원" in tag_name:
+                tag.append(tag_name)
+            if "박물관" in tag_name:
+                tag.append(tag_name)
+            if "야경" in tag_name:
+                tag.append(tag_name)
+            if "스포츠" in tag_name:
+                tag.append(tag_name)
+            if "문화" in tag_name:
+                tag.append(tag_name)
+            if "바다" in tag_name:
+                tag.append(tag_name)
+            if "사찰" in tag_name:
+                tag.append(tag_name)
+            if "사진" in tag_name:
+                tag.append(tag_name)
     return tag

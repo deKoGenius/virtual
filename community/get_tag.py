@@ -20,6 +20,6 @@ for index in all:
 
 print("done")
 
-with open("output.csv","w", newline="") as f:
+with open("output2.csv","w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(tagAll)
