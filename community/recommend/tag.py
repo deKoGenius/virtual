@@ -9,6 +9,9 @@ from community.models import Tour
 
 tourList = pd.DataFrame(Tour.objects.values_list('name', 'tag__name'), columns=['name','tag'])
 tourList = tourList.groupby(['name'])['tag'].apply(','.join).reset_index()
+tag = pd.DataFrame([('test','바다')], columns=tourList.columns)
+tourList = pd.concat([tourList,tag])
+print(tourList)
 
 counter_vector = CountVectorizer(ngram_range=(1,3))
 c_vector_tags = counter_vector.fit_transform(tourList['tag'])
@@ -23,4 +26,4 @@ def get_content_based_collabor(tag):
     tourList.drop(columns=[tag], axis=1, inplace=False)
     print(tourList)
 
-print(get_content_based_collabor('어린이대공원'))
+print(get_content_based_collabor('test'))
