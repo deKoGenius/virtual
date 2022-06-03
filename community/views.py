@@ -1,27 +1,34 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-from .form import QuestionForm
 from .models import *
 # Create your views here.
 
-def index(request):
+def User(request):
     if request.method == 'POST':
-        user = User()
+        user = Users()
         user.name = request.POST['name']
-        user.age = request.POST['age']
-        user.gender = request.POST['gender']
-        user.date = request.POST.get('date')
-        user.time = request.POST.get('time')
+
+        if(request.POST.get('man')=='on'):
+            user.gender = 'M'
+        else:
+            user.gender = 'W'
+
+        user.email = request.POST['email']
+        user.password = request.POST['password']
         user.save()
-        print(user.name,'\n')
-        print(user.age,'\n')
-        print(user.gender,'\n')
-        print(user.date,'\n')
-        print(user.time)
+        # print(user.name,'\n')
+
         return redirect('user')
     else:
-        user = User.objects.all()
+        user = Users.objects.all()
         return render(request, 'community/index.html', {'user':user})
-def question_create(request):
-    form = QuestionForm()
-    return render(request, 'community/index.html')
+#
+# def Input(request):
+#     if request.method == 'POST':
+#         input = Input()
+#         input.startperiod = request.POST['startperiod']
+#
+#     else:
+#         input = Input.objects.all()
+#         return render(request, 'community/input.html', {'input':input})
+
